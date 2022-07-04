@@ -29,10 +29,8 @@ const initDB = async () => {
       CREATE TABLE notes (
         id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         title VARCHAR(100) NOT NULL,
-        text VARCHAR(500) NOT NULL,
+        description VARCHAR(500) NOT NULL,
         category ENUM ("Deportes","Moda","Cocina") DEFAULT "Deportes" NOT NULL,
-        image VARCHAR(300) UNIQUE,
-        status ENUM ("private","public") DEFAULT "private",
         user_id INT UNSIGNED,
         FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
       );

@@ -19,9 +19,17 @@ const registerUser = async (req, res, next) => {
 
         const registrationCode = uuidv4(); //generate id that activates user, eliminates registration code.
         
-        const insertId = await insertUser({ email, encryptedPassword, name, registrationCode });
-
-        res.status(201).send({ status: "ok 🚀 ", data: { id: insertId} });
+        const insertId = await insertUser({
+            email,
+            encryptedPassword,
+            name,
+            registrationCode
+        });
+        //Send email with registrationCode
+        res.status(201).send({
+            status: "ok 🚀 ",
+            data: { id: insertId }
+        });
     } catch (error) {
         next(error)
     }

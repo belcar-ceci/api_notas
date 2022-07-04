@@ -23,7 +23,10 @@ const activateUser = async (req, res, next) => {
     //si hay usuario con codigo de registro, hay q activarlo, eliminando el codigo de la base de datos
     await deleteRegistrationCode(user.id);
 
-    res.status(200).send({ status: "ok 🚀 ", message: "User activated" });
+    res.status(200).send({
+      status: "ok 🚀 ",
+      message: "User activated"
+    });
   } catch (error) {
     next(error);
   }

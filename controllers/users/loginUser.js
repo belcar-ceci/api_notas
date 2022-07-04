@@ -29,7 +29,7 @@ const loginUser = async (req, res, next) => {
     const encryptedPassword = user?.password; //select password
 
     const isLoginValid = //true o false
-      user && (await bcrypt.compare(password, encryptedPassword));
+      user && (await bcrypt.compare(password, encryptedPassword));//user undefine
     
     if (!isLoginValid) {
         const error = new Error("Wrong password or email")
@@ -55,13 +55,16 @@ const loginUser = async (req, res, next) => {
       id: user.id,
       role: user.role,
     };
-    //generate token with 3 params 
+    //generate token with 3 params and expire
         const token = jwt.sign(
             tokenPayload,
             process.env.JWT_SECRET, {
       expiresIn: "30d",
     });
-     res.status(200).send({ status: "ok 👌 ", data: { token } }); //le evio el token al usuario
+        res.status(200).send({
+            status: "ok 👌 ",
+            data: { token }
+        }); //sending token for user
     } catch (error) {
         next(error);
     }
