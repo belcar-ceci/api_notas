@@ -1,29 +1,23 @@
 require("dotenv").config();
 const express = require("express");
-//const morgan = require("morgan");
-//const fileUpload = require("express-fileupload");
 
 const { SERVER_PORT } = process.env;
 
 const { validateAuth } = require("./middlewares");
 
+//controllers user
 const {
     registerUser,
     activateUser,
     loginUser
 } = require("./controllers/users"); //Coge el index por defecto
 
-const {
-  
-  createNote,
-  
-} = require("./controllers/notes");
+//controllers notes
+const { createNote, editNote } = require("./controllers/notes");
 
 const app = express();
 
-//app.use(express.json()); //peticiones
-
-
+app.use(express.json()); //peticiones
 
 //Enpoints User
 app.post("/users", registerUser);
@@ -31,17 +25,13 @@ app.put("/users/activate/:registrationCode", activateUser); //cambio el put por 
 app.post("/login", loginUser);
 
 //Enpoints Notes
-app.get("/notes", validateAuth, createNote);
-/*app.get("/notes/:idNote", checkPublic, validateAuth, getNoteById);
 app.post("/notes", validateAuth, createNote);
-app.put("/notes/:idNote", validateAuth, editNote);
-app.delete("/notes/:idNote", validateAuth, deleteNote);*/
+app.patch("/notes/:idNote", validateAuth, editNote);
 
 /** Middleware 404 */ //rutas que no se encuentran
 app.use((req, res, next) => {
     res.status(404).send({status: "error", message: "Not Found"})
 });
-
 
 /** Middleware error */
 app.use((error, req, res, next) => {

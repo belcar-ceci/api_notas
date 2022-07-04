@@ -1,5 +1,6 @@
 
 const createNote = require("./createNote");
+const editNote = require("./editNote")
 
 
-module.exports = { createNote };
+module.exports = { createNote, editNote };
