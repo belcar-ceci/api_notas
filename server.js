@@ -13,7 +13,7 @@ const {
 } = require("./controllers/users"); //Coge el index por defecto
 
 //controllers notes
-const { createNote, editNote } = require("./controllers/notes");
+const { getNotes, getNoteById, createNote, editNote } = require("./controllers/notes");
 
 const app = express();
 
@@ -25,6 +25,12 @@ app.put("/users/activate/:registrationCode", activateUser); //cambio el put por 
 app.post("/login", loginUser);
 
 //Enpoints Notes
+/**
+ 
+app.get("/notes/:idNote", checkPublic, validateAuth, getNoteById);
+ */
+app.get("/notes", validateAuth, getNotes);//Todas las notas
+app.get("/notes/:idNote", validateAuth, getNoteById);//Una nota
 app.post("/notes", validateAuth, createNote);
 app.patch("/notes/:idNote", validateAuth, editNote);
 
