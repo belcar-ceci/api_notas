@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const { v4: uuidv4 } = require("uuid");
 const { insertUser, selectUserByEmail } = require("../../repositories/users");
-
+const { generateError } = require("../../helpers");
 
 const registerUser = async (req, res, next) => {
     try {
@@ -9,10 +9,8 @@ const registerUser = async (req, res, next) => {
 
         const userWithSameEmail = await selectUserByEmail(email);
 
-         if (userWithSameEmail) {
-             const error = new Error("Already exists an user with that email");
-             error.statusCode = 400;
-             throw error; //change por helpers generateError
+        if (userWithSameEmail) {
+             generateError("Already exists an user with that email", 400)
          }
         
         const encryptedPassword = await bcrypt.hash(password, 10);

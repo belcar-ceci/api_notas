@@ -1,4 +1,5 @@
 const { selectNoteById, updateNoteById } = require("../../repositories/notes");
+const { generateError } = require("../../helpers");
 
 const editNote = async (req, res, next) => {
   try {
@@ -7,17 +8,13 @@ const editNote = async (req, res, next) => {
     const noteDB = await selectNoteById(idNote);
 
     if (!noteDB) {
-      const error = new Error("Note does not exist")
-      error.statusCode = 404;
-      throw error;
+      generateError("Note does not exist", 404);
     }
 
     const userId = req.auth.id;
 
     if (noteDB.user_id !== userId) {
-      const error = new Error("You cant update someone else's note")
-      error.statusCode = 404;
-      throw error;
+      generateError("You cant update someone else's note", 400); 
     } //The user edits his own note
 
     await updateNoteById({ ...noteDB, ...req.body });

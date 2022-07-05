@@ -3,7 +3,7 @@ const express = require("express");
 
 const { SERVER_PORT } = process.env;
 
-const { validateAuth } = require("./middlewares");
+const { validateAuth, notFound, handleError } = require("./middlewares");
 
 //controllers user
 const {
@@ -28,18 +28,11 @@ app.post("/login", loginUser);
 app.post("/notes", validateAuth, createNote);
 app.patch("/notes/:idNote", validateAuth, editNote);
 
-/** Middleware 404 */ //rutas que no se encuentran
-app.use((req, res, next) => {
-    res.status(404).send({status: "error", message: "Not Found"})
-});
+/** Middleware 404 */ //lost routes
+app.use(notFound)
 
 /** Middleware error */
-app.use((error, req, res, next) => {
-    console.error(error)
-
-    res.statusCode = error.statusCode || 500;
-    res.send({ status: "error", message: error.message });
-});
+app.use(handleError)
 
 app.listen(SERVER_PORT, () => {
   console.log(`Server listening 👌 on http://localhost:${SERVER_PORT}`);

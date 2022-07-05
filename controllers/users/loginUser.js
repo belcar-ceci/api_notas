@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken")
 const { selectUserByEmail } = require("../../repositories/users");
+const { generateError } = require("../../helpers");
 
 const loginUser = async (req, res, next) => {
     try {
@@ -31,10 +32,8 @@ const loginUser = async (req, res, next) => {
     const isLoginValid = //true o false
       user && (await bcrypt.compare(password, encryptedPassword));//user undefine
     
-    if (!isLoginValid) {
-        const error = new Error("Wrong password or email")
-        error.statusCode = 400;
-        throw error;
+        if (!isLoginValid) {
+        generateError("Wrong password or email", 400)
     }
     /*const isPasswordOk = await bcrypt.compare(password, encryptedPassword)
     
@@ -45,9 +44,7 @@ const loginUser = async (req, res, next) => {
     }   */ 
     
     if (user.registrationCode) {
-        const error = new Error("User not Activated. Check your email");
-        error.statusCode = 400;
-        throw error; //change for helpers generateError
+        generateError("User not Activated. Check your email", 400);
     }
         
     //info to save in the token
