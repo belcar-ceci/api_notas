@@ -1,4 +1,5 @@
 require("dotenv").config();
+const cors = require("cors");
 const express = require("express");
 
 const { SERVER_PORT } = process.env;
@@ -18,6 +19,8 @@ const { getNotes, getNoteById, createNote, editNote } = require("./controllers/n
 const app = express();
 
 app.use(express.json()); //peticiones
+app.use(cors()); //Middleware de cors para poder hacer peticiones desde fuera
+
 
 //Enpoints User
 app.post("/users", registerUser);
