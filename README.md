@@ -7,7 +7,7 @@ Implementar una API que permita publicar notas privadas de texto y categorizarla
 ## Anónimo: 👨 
 
 - Login: usando email + contraseña
-- Registro: pide email + contraseña
+- Registro: pide nombre + email + contraseña
 
 ## Usuarios Registrados: 👨‍🦲 👩 
 
@@ -57,7 +57,7 @@ Implementar una API que permita publicar notas privadas de texto y categorizarla
 ## Authors 🚀 
 
 * Cecilia Carbajal.
-* Calixto Lópex.
+* Calixto López.
 ## Gratitud 🎁
 * Comparte este proyecto 📢 .
 * Made with ❤️ by [Cecilia Carbajal](https://github.com/belcar-ceci/belcar_ceci_portfolio.git) y [Calixto López ](https://github.com/CalixtoLopez)
