@@ -53,6 +53,7 @@ Implementar una API que permita publicar notas privadas de texto y categorizarla
 * express  
 * morgan  
 * mysql2 
+* joi
 
 ## Authors 🚀 
 
