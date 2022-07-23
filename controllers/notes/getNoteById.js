@@ -1,9 +1,13 @@
 const { selectNoteById } = require("../../repositories/notes");
 const { generateError } = require("../../helpers");
+const { idNoteSchema } = require("../../schemas/notes");
 
 const getNoteById = async (req, res, next) => {
   try {
     const { idNote } = req.params;
+
+    await idNoteSchema.validateAsync(idNote);
+
     const noteDB = await selectNoteById(idNote);
 
     if (!noteDB) {

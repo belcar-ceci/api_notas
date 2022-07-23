@@ -4,7 +4,7 @@ const selectNotes = async (userId) => {
   const pool = getPool();
 
   const [notes] = await pool.query(
-    "SELECT title FROM notes WHERE user_id = ? ",
+    "SELECT id, title FROM notes WHERE user_id = ? ",
     [userId]
   );
 

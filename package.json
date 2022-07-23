@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "nodemon server.js",
     "initDB": "node database/initDB.js",
-    "populateDB": "node database/populateDB.js"
+    "populateDB": "node database/populateDB.js",
+     "start": "node server.js"
   },
   "keywords": [],
   "author": "",

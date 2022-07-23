@@ -1,10 +1,13 @@
 const { selectNoteById, updateNoteById } = require("../../repositories/notes");
 const { generateError } = require("../../helpers");
+const {idNoteSchema } = require("../../schemas/notes");
 
 const editNote = async (req, res, next) => {
   try {
     const { idNote } = req.params;
 
+    await idNoteSchema.validateAsync(idNote);
+    
     const noteDB = await selectNoteById(idNote);
 
     if (!noteDB) {
