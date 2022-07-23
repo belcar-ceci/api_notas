@@ -26,7 +26,12 @@ const newUserSchema = Joi.object({
   name: Joi.string()
     .min(3)
     .max(100)
-    .error(generateError("Name must have between 3 and 100 characters", 400)),
+    .required()
+    .error(generateError(
+      "Name must have between 3 and 100 characters",
+      400
+    )
+    ),
 });
 
 module.exports = newUserSchema;
