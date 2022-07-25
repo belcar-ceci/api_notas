@@ -8,7 +8,7 @@ const newNoteSchema = Joi.object({
     .required()
     .error(
       generateError(
-        "Title is required and must have between 4 and 100 characters",
+        "😮  Title is required and must have between 4 and 100 characters",
         400
       )
     ),
@@ -18,19 +18,18 @@ const newNoteSchema = Joi.object({
     .required()
     .error(
       generateError(
-        "Text is required and must have between 4 and 500 characters",
+        "😮 Text is required and must have between 4 and 500 characters",
         400
       )
   ),
   category: Joi.string()
-
     .required()
     .error(
       generateError(
-        "Text is required and must have between 4 and 500 characters",
+        "😮  The category is missing!!! Select one of the three categories.",
         400
       )
-    ),
+    ), 
 });
 
 module.exports = newNoteSchema;

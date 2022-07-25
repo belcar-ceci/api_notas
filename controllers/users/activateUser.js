@@ -11,7 +11,7 @@ const activateUser = async (req, res, next) => {
     const user = await selectUserByActivationCode(registrationCode); //busca en la base datos si hay un usuario con ese codigo
 
     if (!user) {
-      generateError("Invalid registration code or already activated", 404);
+      throw generateError("Invalid registration code or already activated", 404);
     }
 
     //si hay usuario con codigo de registro, hay q activarlo, eliminando el codigo de la base de datos

@@ -19,7 +19,7 @@ const loginUser = async (req, res, next) => {
       user && (await bcrypt.compare(password, encryptedPassword));//user undefine
     
         if (!isLoginValid) {
-        generateError("Wrong password or email", 400)
+        throw generateError("Wrong password or email", 400)
     }
     /*const isPasswordOk = await bcrypt.compare(password, encryptedPassword)
     
@@ -30,7 +30,7 @@ const loginUser = async (req, res, next) => {
     }   */ 
     
     if (user.registrationCode) {
-        generateError("User not Activated. Check your email", 400);
+        throw generateError("User not Activated. Check your email", 400);
     }
         
     //info to save in the token

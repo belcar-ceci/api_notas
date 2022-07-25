@@ -8,7 +8,7 @@ const getNotes = async (req, res, next) => {
     const notes = await selectNotes(userId);
 
     if (notes.length === 0) {
-      generateError("User doesn't have notes", 404);
+      throw generateError("User doesn't have notes", 404);
     }
 
     res.status(200).send({ status: "ok", data: notes });

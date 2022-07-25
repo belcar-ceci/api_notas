@@ -9,7 +9,7 @@ const newUserSchema = Joi.object({
     .required()
     .error(
       generateError(
-        "Email is required. Must be a valid one and must have between 4 and 100 characters",
+        "😮 Email is required. Must be a valid one and must have between 4 and 100 characters",
         400
       )
     ),
@@ -19,7 +19,7 @@ const newUserSchema = Joi.object({
     .required()
     .error(
       generateError(
-        "Password is required and must have between 4 and 100 characters",
+        "😮  Password is required and must have between 4 and 100 characters",
         400
       )
     ),
@@ -28,7 +28,7 @@ const newUserSchema = Joi.object({
     .max(100)
     .required()
     .error(generateError(
-      "Name must have between 3 and 100 characters",
+      "😮 Name must have between 3 and 100 characters",
       400
     )
     ),

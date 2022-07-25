@@ -11,13 +11,13 @@ const editNote = async (req, res, next) => {
     const noteDB = await selectNoteById(idNote);
 
     if (!noteDB) {
-      generateError("Note does not exist", 404);
+      throw generateError("Note does not exist", 404);
     }
 
     const userId = req.auth.id;
 
     if (noteDB.user_id !== userId) {
-      generateError("You cant update someone else's note", 400); 
+      throw generateError("You cant update someone else's note", 400); 
     } //The user edits his own note
 
     await updateNoteById({ ...noteDB, ...req.body });

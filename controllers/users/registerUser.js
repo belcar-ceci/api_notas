@@ -14,7 +14,7 @@ const registerUser = async (req, res, next) => {
         const userWithSameEmail = await selectUserByEmail(email);
 
         if (userWithSameEmail) {
-             generateError("Already exists an user with that email", 400)
+             throw generateError("Already exists an user with that email", 400)
          }
         
         const encryptedPassword = await bcrypt.hash(password, 10);
